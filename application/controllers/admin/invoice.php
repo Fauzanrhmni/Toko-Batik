@@ -44,4 +44,3 @@ class Invoice extends CI_Controller{
     }
     
 }
-?>

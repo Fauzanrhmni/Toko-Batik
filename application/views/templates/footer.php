@@ -1,3 +1,10 @@
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Akmal Sidik <?= date('Y') ?></span>
+        </div>
+    </div>
+</footer>
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url()?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url()?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

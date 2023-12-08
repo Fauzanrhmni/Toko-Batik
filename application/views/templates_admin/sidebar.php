@@ -39,38 +39,29 @@
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoices</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('admin/pengiriman') ?>">
+                    <i class="fas fa-fw fa-motorcycle"></i>
+                    <span>Pengiriman</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            <!-- Sidebar Message -->
-            <!-- <div class="sidebar-card d-none d-lg-flex"> -->
-            <!-- <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="..."> -->
-            <!-- <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p> -->
-            <!-- <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a> -->
-            <!-- </div> -->
-
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -82,10 +73,8 @@
                             </div>
                         </div>
                     </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,7 +94,6 @@
                                 </form>
                             </div>
                         </li>
-
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
@@ -118,16 +106,13 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <ul class="na navbar-nav navbar-right">
                             <?php if ($this->session->userdata('username')) {  ?>
-                                <li>
-                                    <div>Selamat Datang : <?php echo $this->session->userdata('username') ?></div>
+                                <li class="ml-2">
+                                    <?php echo anchor('auth/logout', '(' . $this->session->userdata('username') . ')', 'onclick="return confirm(\'Apakah Anda yakin ingin logout?\');"'); ?>
                                 </li>
-                                <li class="ml-2"> <?php echo anchor('auth/logout', ' logout') ?></li>
                             <?php } else { ?>
                                 <li><?php echo anchor('auth/login', 'login'); ?></li>
                             <?php } ?>
                         </ul>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->

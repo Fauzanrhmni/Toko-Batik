@@ -117,14 +117,13 @@
                                 </li>
                             </ul>
                             <div class="topbar-divider d-none d-sm-block"></div>
-                            <ul class="na navbar-nav navbar-right">
-                                <?php if ($this->session->userdata('username')) {  ?>
-                                    <li>
-                                        <div>Selamat Datang :  <?php echo $this->session->userdata('username') ?></div>
+                            <ul class="navbar-nav navbar-right">
+                                <?php if ($this->session->userdata('username')) { ?>
+                                    <li class="ml-2">
+                                        <?php echo anchor('auth/logout', '(' . $this->session->userdata('username') . ')', 'onclick="return confirm(\'Apakah Anda yakin ingin logout?\');"'); ?>
                                     </li>
-                                    <li class="ml-2" > <?php echo anchor('auth/logout', ' logout') ?></li>
                                 <?php } else { ?>
-                                    <li><?php echo anchor('auth/login', 'login'); ?></li>
+                                    <li><?php echo anchor('auth/login', 'Login'); ?></li>
                                 <?php } ?>
                             </ul>
                         </div>

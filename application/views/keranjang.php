@@ -1,61 +1,62 @@
-<!-- Tabel untuk menampilkan keranjang belanja -->
 <div class="container-fluid">
     <h4>Keranjang Belanja</h4>
-    <table class="table table-bordered table-striped table-hover">
-        <tr>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+        <tr style="background-color: #4E73DF; color: aliceblue;" class="text-center">
             <th>NO</th>
             <th>Nama Produk</th>
-            <th>Ukuran</th>
-            <th>Jumlah</th>
-            <th>Harga</th>
+            <th colspan="2">Ukuran</th>
             <th>Total</th>
+            <th>Jumlah</th>
         </tr>
         <?php
         $no = 1;
         $grandTotal = 0; // Variabel untuk menyimpan grand total
         foreach ($this->cart->contents() as $items) :
-            $hargaBarang = $items['price']; // Harga barang per item
+            $hargaBarangAsli = $items['price']; // Harga asli barang per item
             $jumlahBarang = $items['qty']; // Jumlah barang
 
-            // Menghitung harga tambahan ukuran jika ada
+            $hargaTambahan = 0; // Inisialisasi harga tambahan
             switch ($items['options']['ukuran']) {
                 case 'S':
                     // Tidak ada tambahan harga untuk ukuran S
                     break;
                 case 'M':
-                    $hargaBarang += 2000; // Tambahkan Rp. 2.000 untuk ukuran M
+                    $hargaTambahan = 2000; // Harga tambahan untuk ukuran M
+                    $hargaBarangAsli += $hargaTambahan;
                     break;
                 case 'L':
-                    $hargaBarang += 4000; // Tambahkan Rp. 4.000 untuk ukuran L
+                    $hargaTambahan = 4000; // Harga tambahan untuk ukuran L
+                    $hargaBarangAsli += $hargaTambahan;
                     break;
                 case 'XL':
-                    $hargaBarang += 6000; // Tambahkan Rp. 6.000 untuk ukuran XL
+                    $hargaTambahan = 6000; // Harga tambahan untuk ukuran XL
+                    $hargaBarangAsli += $hargaTambahan;
                     break;
                 default:
                     // Handle jika ukuran tidak ada yang cocok
                     break;
             }
 
-
-            // Hitung harga subtotal untuk item ini
-            $totalItem = $hargaBarang * $jumlahBarang;
+            $totalItem = $hargaBarangAsli * $jumlahBarang;
 
             echo '<tr>';
             echo '<td>' . $no++ . '</td>';
             echo '<td>' . $items['name'] . '</td>';
             echo '<td>' . $items['options']['ukuran'] . '</td>';
+            echo '<td>Rp. ' . number_format($hargaTambahan, 0, ',', '.') . '</td>';
+            echo '<td align="left">Rp. ' . number_format($totalItem, 0, ',', '.') . '</td>';
             echo '<td>' . $items['qty'] . '</td>';
-            echo '<td align="right">Rp. ' . number_format($hargaBarang, 0, ',', '.') . '</td>';
-            echo '<td align="right">Rp. ' . number_format($totalItem, 0, ',', '.') . '</td>';
             echo '</tr>';
 
             $grandTotal += $totalItem; // Tambahkan harga subtotal ke grand total
         endforeach;
         ?>
-        <tr>
-            <td colspan="5"></td>
-            <td align="right" id="grandTotal">Rp. <?php echo number_format($grandTotal, 0, ',', '.') ?></td>
+        <tr style="background-color: grey; color:aliceblue;">
+            <th colspan="5">Total Bayar</th>
+            <th align="left">Rp. <?php echo number_format($grandTotal, 0, ',', '.') ?></th>
         </tr>
+    </div>
     </table>
     <!-- Tombol untuk menghapus keranjang belanja, kembali, dan menuju pembayaran -->
     <div align="right">
@@ -70,27 +71,5 @@
         </a>
     </div>
 </div>
-
-<!-- JavaScript untuk menghitung total harga -->
-<script>
-    function hitungTotalHarga(id, hargaAwal) {
-        var hargaPerBarang = hargaAwal; // Menggunakan harga awal barang sebagai referensi
-        var ukuran = document.getElementById('ukuran' + id).value;
-        var jumlah = document.getElementById('jumlah' + id).value;
-
-        // Hitung harga tambahan berdasarkan ukuran yang dipilih
-        if (ukuran === 'M') {
-            hargaPerBarang += 2000; // Tambahkan Rp. 2.000 untuk ukuran M
-        } else if (ukuran === 'L') {
-            hargaPerBarang += 4000; // Tambahkan Rp. 4.000 untuk ukuran L
-        } else if (ukuran === 'XL') {
-            hargaPerBarang += 6000; // Tambahkan Rp. 6.000 untuk ukuran XL
-        }
-
-        var totalHarga = hargaPerBarang * jumlah;
-        document.getElementById('totalHarga' + id).innerText = 'Rp. ' + totalHarga.toLocaleString();
-
-        // Setelah menghitung total, panggil fungsi untuk mengupdate total keseluruhan
-        updateTotalKeseluruhan();
-    }
-</script>
+</div>
+</div>

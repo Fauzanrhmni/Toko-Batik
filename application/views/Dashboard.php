@@ -91,9 +91,9 @@
         if (ukuran === 'M') {
             hargaPerBarang += 2000; // Tambahkan Rp. 2.000 untuk ukuran M
         } else if (ukuran === 'L') {
-            hargaPerBarang += 4000; // Tambahkan Rp. 4.000 untuk ukuran L
+            hargaPerBarang += 4000;
         } else if (ukuran === 'XL') {
-            hargaPerBarang += 6000; // Tambahkan Rp. 6.000 untuk ukuran XL
+            hargaPerBarang += 6000;
         }
 
         var totalHarga = hargaPerBarang * jumlah;
