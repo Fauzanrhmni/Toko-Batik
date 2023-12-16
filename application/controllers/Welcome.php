@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -18,12 +19,21 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-    public function index()
-    {
-        $data['barang'] = $this->model_barang->tampil_data()->result();
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('dashboard', $data);
-        $this->load->view('templates/footer');
-    }
+	public function index()
+	{
+		$data['barang'] = $this->model_barang->tampil_data()->result();
+		$this->load->view('templates/header');
+		$this->load->view('templates/sidebar');
+		$this->load->view('dashboard', $data);
+		$this->load->view('templates/footer');
+	}
+	public function cari_barang()
+	{
+		$keyword = $this->input->get('keyword');
+		$data['barang'] = $this->model_barang->cari_barang($keyword);
+		$this->load->view('templates/header');
+		$this->load->view('templates/sidebar');
+		$this->load->view('dashboard', $data);
+		$this->load->view('templates/footer');
+	}
 }

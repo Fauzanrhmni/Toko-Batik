@@ -76,7 +76,6 @@
 </div>
 <?php endforeach; ?>
 </div>
-</div>
 
 <script>
     function hitungTotalHarga(id, hargaAwal) {

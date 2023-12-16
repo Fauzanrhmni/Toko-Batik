@@ -1,4 +1,13 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <!-- welcome/index.php -->
+    <?php if ($this->session->flashdata('success_message')) : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php echo $this->session->flashdata('success_message'); ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img class="d-block w-100" src="<?php echo base_url('assets/img/slider1.jpg') ?>" alt="First slide">
@@ -28,7 +37,7 @@
                         <span class="badge badge-success">Rp. <?php echo number_format($brg->harga, 0, ',', '.') ?></span>
                         <div class="mt-2">
                             <!-- Tombol untuk menampilkan modal -->
-                            <div class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTambahKeranjang<?php echo $brg->id_brg ?>">Tambah Keranjang</div>
+                            <div class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTambahKeranjang<?php echo $brg->id_brg ?>">Add To Cart</div>
                             <?php echo anchor('dashboard/detail/' . $brg->id_brg, '<div class="btn btn-sm btn-success">Detail</div>') ?>
                         </div>
                     </div>
