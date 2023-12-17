@@ -5,6 +5,7 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
         if ($this->session->userdata('role_id') != '2') {
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
             <strong>Anda Belum Login!</strong> Silahkan login terlebih dahulu.
@@ -122,5 +123,66 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/sidebar');
         $this->load->view('status_pesanan_user', $data);
         $this->load->view('templates/footer');
+    }
+    public function showKomen()
+    {
+        $this->load->model('model_komentar');
+        $data['comments'] = $this->model_komentar->getCommentsWithReplies();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('komentar', $data);
+        $this->load->view('templates/footer');
+    }
+    public function addComment()
+    {
+        $user_id = $this->session->userdata('id');
+
+        $this->db->select('tb_user.role_id');
+        $this->db->from('tb_user');
+        $this->db->where('tb_user.id', $user_id);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        if ($result) {
+            // $role_id = $result->role_id;
+
+            $data = array(
+                'user_id' => $user_id,
+                'komentar' => $this->input->post('komentar')
+            );
+
+            // $data['role_id'] = $role_id;
+
+            if (!empty($data['komentar'])) {
+                $this->load->model('Model_komentar'); // Load model
+                $this->Model_komentar->addComment($data);
+                redirect('dashboard/showKomen');
+            } else {
+                echo "Mohon lengkapi form komentar!";
+            }
+        } else {
+            echo "User tidak ditemukan!";
+        }
+    }
+    public function addReply()
+    {
+        $user_id = $this->session->userdata('id'); // Ambil ID pengguna dari sesi
+        $data = array(
+            'id_komentar' => $this->input->post('comment_id'),
+            'user_id' => $user_id,
+            'balasan' => $this->input->post('reply')
+        );
+        $this->model_komentar->addReply($data);
+        redirect('dashboard/showKomen');
+    }
+    public function update_status($id_pesanan, $status) {
+        // Lakukan validasi admin di sini
+        // Pastikan hanya admin yang berhak untuk melakukan update status
+
+        // Lakukan update status pesanan menggunakan model_invoice
+        $this->model_invoice->update_status_pesanan($id_pesanan, $status);
+
+        // Redirect kembali ke halaman status pesanan
+        redirect('dashboard/status');
     }
 }

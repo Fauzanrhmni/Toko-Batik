@@ -25,6 +25,16 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalLong" >
+                    <i class="far fa-question-circle"></i>
+                    <span>Cara Beli</span></a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('tamu/index') ?>">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Profile</span></a>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -51,7 +61,7 @@
                     <span>Status Pengiriman</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('dashboard/komentar') ?>">
+                <a class="nav-link" href="<?php echo base_url('dashboard/showKomen') ?>">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>Komentar</span></a>
             </li>

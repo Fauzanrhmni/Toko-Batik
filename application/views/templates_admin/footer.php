@@ -21,6 +21,16 @@
 <!-- Page level custom scripts -->
 <script src="<?php echo base_url() ?>assets/js/demo/chart-area-demo.js"></script>
 <script src="<?php echo base_url() ?>assets/js/demo/chart-pie-demo.js"></script>
+<script>
+    // Tangkap klik tombol hapus pada modal dan simpan ID pesanan yang akan dihapus
+    $('#konfirmasiModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var idPesanan = button.data('id');
+        var modal = $(this);
+        modal.find('#hapusPesanan').attr('href', '<?= base_url('admin/pengiriman/hapus_pesanan/') ?>' + idPesanan);
+    });
+</script>
+
 
 </body>
 

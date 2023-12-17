@@ -12,6 +12,7 @@
                         <th>Nama Barang</th>
                         <th>Jumlah</th>
                         <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,15 @@
                                         break;
                                     default:
                                         echo 'Status tidak valid';
+                                        break;
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                switch ($item->status) {
+                                    case '3':
+                                        echo '<a href="' . base_url('dashboard/update_status/' . $item->id . '/4') . '" class="btn btn-success ml-2">Pesanan Diterima</a>';
                                         break;
                                 }
                                 ?>

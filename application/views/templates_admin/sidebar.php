@@ -44,6 +44,11 @@
                     <i class="fas fa-fw fa-motorcycle"></i>
                     <span>Pengiriman</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('admin/dashboard_admin/showKomen') ?>">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <span>komentar</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->

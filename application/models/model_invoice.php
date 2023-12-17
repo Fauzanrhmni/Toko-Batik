@@ -93,12 +93,19 @@ class model_invoice extends CI_Model
         $this->db->where('id', $id_pesanan);
         $this->db->update('tb_pesanan', $data);
     }
-    public function get_all_pesanan_user($username) {
+    public function get_all_pesanan_user($username)
+    {
         $this->db->select('tb_pesanan.*, tb_invoice.username');
         $this->db->from('tb_pesanan');
         $this->db->join('tb_invoice', 'tb_pesanan.id_invoice = tb_invoice.id', 'left');
         $this->db->where('tb_invoice.username', $username); // Sesuaikan dengan kolom username di tb_invoice
-        
+
         return $this->db->get()->result();
+    }
+    public function hapus_pesanan($id_pesanan) {
+        // Hapus pesanan dari tabel tb_pesanan berdasarkan ID
+        $this->db->where('id', $id_pesanan);
+        $this->db->delete('tb_pesanan');
+        // Pastikan fungsi ini menghapus pesanan dengan benar berdasarkan ID yang diberikan
     }
 }
